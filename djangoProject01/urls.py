@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.http import HttpResponse
+
+def context(request):
+    content=("Use 'api/' endkey to get content in api key")
+    return HttpResponse(content)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',context,name="context"),
     path('api/',include('api.urls')),
 ]
